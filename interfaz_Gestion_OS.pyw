@@ -28,19 +28,23 @@ class Programa(Frame):
         self.btn_agregar = Button(contenedor_buscado, text= "AGREGAR +", font= ("Times New Roman", 10, "bold"), justify= CENTER)
         self.btn_agregar.grid(row= 1, column=3, ipady= 6, padx= 15, pady= 15)
 
+        #Tabla con obras sociales
         contenedor_lista = Frame(contenedor_todo, width= 950, height= 200, bg= "Gray62")
         contenedor_lista.pack(pady=20, padx= 20, ipadx= 25, ipady= 25)
 
-        self.lista_OS = ttk.Treeview(contenedor_lista, columns=("nombre", "cuit"))
-        self.lista_OS.column("#0", width = 100, stretch = False)
-        self.lista_OS.column("nombre", width = 100, stretch = False)
-        self.lista_OS.column("cuit", width = 100, stretch = False)
+        self.lista_OS = ttk.Treeview(contenedor_lista)
+        self.lista_OS.grid(row= 0, column= 0, pady= 20)
+        self.lista_OS["columns"] = ("Alias", "Nombre", "CUIT")
+        self.lista_OS.column("#0", width = 0, stretch = NO)
+        self.lista_OS.column("Alias", width = 100, stretch = NO)
+        self.lista_OS.column("Nombre", width = 100, stretch = NO)
+        self.lista_OS.column("CUIT", width = 100, stretch = False)
 
-        self.lista_OS.heading("#0", text = "Alias", anchor = CENTER)
-        self.lista_OS.heading("nombre", text = "Nombre", anchor = CENTER)
-        self.lista_OS.heading("cuit", text = "Cuit", anchor = CENTER)
+        self.lista_OS.heading("#0", text = "", anchor = CENTER)
+        self.lista_OS.heading("Alias", text = "Alias", anchor = CENTER)
+        self.lista_OS.heading("Nombre", text = "Nombre", anchor = CENTER)
+        self.lista_OS.heading("CUIT", text = "CUIT", anchor = CENTER)
 
-        self.lista_OS.pack(pady= 20)
 
 ventana = Tk()
 ventana.wm_title("Gestión Obra Social")
