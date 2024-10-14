@@ -3,7 +3,7 @@ from tkinter import messagebox
 from tkinter import ttk
 from PIL import Image, ImageTk
 
-class Gestion_Obra_Social(Frame):
+class Gestion_Fichas(Frame):
     def __init__(self, master):
         Frame.__init__(self, master, bg="#e4c09f", height= 680, width=1300)
         self.master = master
@@ -11,6 +11,7 @@ class Gestion_Obra_Social(Frame):
         self.pack(expand=True)
         self.createWidgets()
 
+"""
     #Funciones que AGREGAN obra social
     def agregar_OS(self):
         ventana_agregar = Toplevel(self)
@@ -174,6 +175,7 @@ class Gestion_Obra_Social(Frame):
             #self.tree.delete(*self.tree.get_children())
             #self.cargar_tratamiento()
             messagebox.showwarning("Atención", "No se encontró la obra social.")
+"""
 
     def createWidgets(self):
         contenedor_total = Frame(self, padx=10, pady=10, bg="#e4c09f")
@@ -182,28 +184,25 @@ class Gestion_Obra_Social(Frame):
         #primer frame, contiene la imagen y el titulo de la ventana
         contenedor_titulo = Frame(contenedor_total, bg="#e4c09f")
         contenedor_titulo.pack()
-
-        # Cargar la imagen de fondo
+            # Cargar la imagen de fondo
         img_fondo = Image.open("fondo3.png")
         img_fondo = img_fondo.resize((1000, 130), Image.Resampling.LANCZOS)
         self.img_fondo = ImageTk.PhotoImage(img_fondo)
-
-        # Crear un Label para la imagen de fondo
+            # Crear un Label para la imagen de fondo
         fondo_label = Label(contenedor_titulo, image=self.img_fondo)
         fondo_label.pack(expand=True, fill="both")
-
-        # Crear un Label para el texto y colocarlo encima del Label de la imagen
-        texto_label = Label(contenedor_titulo, text="Obras Sociales", font=("Robot", 25), bg="Black", fg="White")
+            # Crear un Label para el texto y colocarlo encima del Label de la imagen
+        texto_label = Label(contenedor_titulo, text="FICHAS", font=("Robot", 25), bg="Black", fg="White")
         texto_label.place(relx=0.5, rely=0.5, anchor="center")
 
         #segundo frame, contiene el buscador y el boton de agregar
-        #buscador de os
+            #buscador de fichas
         frame_busqueda = Frame(contenedor_total, bg="#e4c09f")
         frame_busqueda.pack(fill= "x")
-        #separa el campo de busqueda del botón
+            #separa el campo busqueda del resto de la ventana
         frame_busqueda.columnconfigure(4, weight=1)
 
-        #Widgets de búsqueda dentro del frame más chico
+            #Widgets de búsqueda dentro del frame más chico
         Label(frame_busqueda, text="Buscar:", bg="#e6c885",font=("Robot",15)).grid(row=1, column=1, padx=5, pady=5, sticky= W)
 
         self.entrada_buscar = Entry(frame_busqueda,width="50",font=("Robot",13))
@@ -218,9 +217,8 @@ class Gestion_Obra_Social(Frame):
         boton_agregar = Button(frame_busqueda, text="Agregar   +", width=15, bg="chartreuse3", activebackground="chartreuse4", font=("Robot",15), command=self.agregar_OS)
         boton_agregar.grid(row=1, column=5, padx=10, pady=10, sticky= E)
 
-
         #Tercer frame, contiene la tabla de OS
-        #Frame para el Treeview y el scrollbar
+            #Frame para el Treeview y el scrollbar
         frame_tabla = Frame(contenedor_total, bg="#e4c09f", height= 500, width= 1000)  # Frame para contener la tabla y el scrollbar
         frame_tabla.pack(expand=True)
         
@@ -229,7 +227,7 @@ class Gestion_Obra_Social(Frame):
         stilo.configure("Treeview.Heading", font=("Robot",14), padding= [0, 10])  # Cambia la fuente de las cabeceras
         
         #Treeview para mostrar la tabla de tratamientos dentro del frame_tabla
-        self.tree = ttk.Treeview(frame_tabla, columns=("Nombre", "Siglas", "CUIT"), show='headings', height=16)
+        self.tree = ttk.Treeview(frame_tabla, columns=("Código", "Paciente", "Doc. Paciente"), show='headings', height=16)
         self.tree.grid(row=0, column=0, sticky="nsew")
 
         #Títulos de columnas
